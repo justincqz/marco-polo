@@ -35,6 +35,7 @@ dotenv.load({ path: '.env.example' });
 // const apiController = require('./controllers/api');
 // const contactController = require('./controllers/contact');
 const flightsController = require('./controllers/flights')
+const thingstodoController = require('./controllers/thingstodo')
 
 /**
  * API keys and Passport configuration.
@@ -121,6 +122,7 @@ app.use((req, res, next) => {
  */
 
 app.post('/flights', flightsController.getFlights);
+app.post('/thingstodo', thingstodoController.getThingsToDo);
 
 /**
  * API examples routes.
