@@ -1,0 +1,3 @@
+exports.getEvents = (req, res) => {
+  
+};
