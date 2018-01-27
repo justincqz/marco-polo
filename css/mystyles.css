@@ -1,0 +1,30 @@
+.jumboheader {
+	height: 500px;
+	background-color: #ffffff;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	padding-bottom: 600px;
+	padding-top: 120px;
+}
+
+.mainform {
+	padding-top: 30px;
+	margin-top:100px;
+	border: #CFCFCF solid;
+	border-radius: 10px!important;
+	box-shadow: 0px 2px 2px 2px #D7D7D7;
+}
+
+.nameslogan {
+	margin-top: 300px;
+}
+
+.btn-main {
+	margin-top: 40px;
+	background-color: #D3D3D3;
+}
+
+body {
+	color :#535353;
+}
