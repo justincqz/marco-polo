@@ -57,6 +57,7 @@
     "passport-twitter": "^1.0.4",
     "paypal-rest-sdk": "^1.7.1",
     "pug": "^2.0.0-rc.3",
+    "qpx-express": "^16.1.12",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "stripe": "^4.24.0",
