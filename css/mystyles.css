@@ -1,30 +1,153 @@
 .jumboheader {
-	height: 500px;
 	background-color: #ffffff;
 	align-items: center;
 	justify-content: center;
 	vertical-align: middle;
-	padding-bottom: 600px;
-	padding-top: 120px;
+	margin-top:0px;
+	margin-bottom:0px;
 }
 
 .mainform {
-	padding-top: 30px;
-	margin-top:100px;
-	border: #CFCFCF solid;
+	padding-top: 5px;
+	margin-top:30px;
+	/*border: #CFCFCF solid;*/
 	border-radius: 10px!important;
-	box-shadow: 0px 2px 2px 2px #D7D7D7;
+	/*box-shadow: 0px 1px 1px 1px #D7D7D7;*/
+	background-color: #ffffff;
 }
 
-.nameslogan {
-	margin-top: 300px;
-}
 
 .btn-main {
 	margin-top: 40px;
-	background-color: #D3D3D3;
+	background-color: #87D37C;
+	color:#FFF;
 }
 
 body {
 	color :#535353;
+	font-family:circularFont;
 }
+
+.jumbotronback {
+	background-image:url("/img/background.jpg");
+	background-size:100% 100%;
+}
+
+.mainpage {
+	background-color:transparent;
+}
+
+.inputPadding {
+	margin-top: 0px;
+	margin-bottom: 2px;
+}
+
+.transparent {
+	background-color: transparent;
+}
+
+@font-face {
+	font-family:circularFont;
+	src : url("/font/CircularStd-Medium.otf");
+}
+
+.inputOutlines {
+	outline: none;
+}
+
+input {
+	border:1px solid #d8d8d8;
+	background:transparent;
+	height:25px;
+}
+
+
+.votingjumbo {
+	height:50px;
+}
+
+.flightentry {
+	border:1px solid #d8d8d8;
+	height:100px;
+	border-radius:10px;
+	position:relative;
+}
+
+
+.nameentry {
+	position:absolute;
+	left:125px;
+	top: 25px;
+}
+
+.timedepart {
+	position:absolute;
+	left:305px;
+	top:15px;
+}
+
+.timedepartdata {
+	position:absolute;
+	left:435px;
+	top:15px;
+}
+
+.timearrive {
+	position:absolute;
+	left:305px;
+	top: 50px;
+}
+
+.timearrivedata {
+	position:absolute;
+	left:435px;
+	top: 50px;
+}
+
+.airportfrom {
+	position:absolute;
+	left:550px;
+	top:50px;
+}
+
+.airportfromloc {
+	position:absolute;
+	left:610px;
+	top:50px;
+}
+
+.airportto{
+	position:absolute;
+	left:550px;
+	top:15px;
+}
+
+.airporttoloc {
+	position:absolute;
+	left:610px;
+	top:15px;
+}
+
+#count {
+  position:absolute;
+  left:900px;
+  top:25px;
+}
+
+.upvote {
+	position:absolute;
+	left:840px;
+	top:25px;
+}
+
+.downvote {
+	position:absolute;
+	left:930px;
+	top:25px;
+}
+
+.cost {
+	position:absolute;
+	top:25px;
+}
+

@@ -4,6 +4,7 @@
   "description": "ichack18 project",
   "main": "index.html",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "npm run lite",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lite": "lite-server"
@@ -11,9 +12,13 @@
   "author": "tee",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.3.0"
+    "lite-server": "^2.3.0",
+    "nodemon": "^1.14.11"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6"
+    "body-parser": "^1.18.2",
+    "bootstrap": "^4.0.0-alpha.6",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.16"
   }
 }
