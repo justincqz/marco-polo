@@ -37,6 +37,7 @@ dotenv.load({ path: '.env.example' });
 const flightsController = require('./controllers/flights')
 const thingstodoController = require('./controllers/thingstodo')
 const accommodationController = require('./controllers/accommodation')
+const eventsController = require('./controllers/events')
 
 /**
  * API keys and Passport configuration.
@@ -125,6 +126,7 @@ app.use((req, res, next) => {
 app.get('/flights', flightsController.getFlights);
 app.get('/thingstodo', thingstodoController.getThingsToDo);
 app.get('/accommodation', accommodationController.getAccommodation);
+app.get('/events', eventsController.getEvents)
 
 /**
  * API examples routes.
