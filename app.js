@@ -121,8 +121,8 @@ app.use((req, res, next) => {
  * Primary app routes.
  */
 
-app.post('/flights', flightsController.getFlights);
-app.post('/thingstodo', thingstodoController.getThingsToDo);
+app.get('/flights', flightsController.getFlights);
+app.get('/thingstodo', thingstodoController.getThingsToDo);
 
 /**
  * API examples routes.

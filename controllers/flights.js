@@ -43,47 +43,58 @@ function returnFlightData(res, fromLoc, toLoc, date, passengerCount) {
   });
 }
 
+let fetch = require('node-fetch');
+
 function getFlights(fromAirportCode, toAirportCode, date, passengerCount) {
   body = {
-  "request": {
-    "passengers": {
-      "kind": "qpxexpress#passengerCounts",
-      "adultCount": passengerCount,
-      "childCount": 0,
-      "infantInLapCount": 0,
-      "infantInSeatCount": 0,
-      "seniorCount": 0
-    },
-    "slice": [
-      {
-        "kind": "qpxexpress#sliceInput",
-        "origin": fromAirportCode,
-        "destination": toAirportCode,
-        "date": date,
-        "maxStops": 1,
-        "maxConnectionDuration": 3*60,
-        "preferredCabin": 'COACH',
-        // "permittedDepartureTime": {
-        //   "kind": "qpxexpress#timeOfDayRange",
-        //   "earliestTime": string,
-        //   "latestTime": string
-        // },
-        // "permittedCarrier": [
-        //   string
-        // ],
-        // "alliance": string,
-        // "prohibitedCarrier": [
-        //   string
-        // ]
-      }
-    ],
-    // "maxPrice": string,
-    // "saleCountry": string,
-    // "ticketingCountry": string,
-    // "refundable": boolean,
-    // "solutions": integer
+    "request": {
+      "passengers": {
+        "kind": "qpxexpress#passengerCounts",
+        "adultCount": passengerCount,
+        "childCount": 0,
+        "infantInLapCount": 0,
+        "infantInSeatCount": 0,
+        "seniorCount": 0
+      },
+      "slice": [
+        {
+          "kind": "qpxexpress#sliceInput",
+          "origin": fromAirportCode,
+          "destination": toAirportCode,
+          "date": date,
+          "maxStops": 1,
+          "maxConnectionDuration": 3*60,
+          "preferredCabin": 'COACH',
+          // "permittedDepartureTime": {
+          //   "kind": "qpxexpress#timeOfDayRange",
+          //   "earliestTime": string,
+          //   "latestTime": string
+          // },
+          // "permittedCarrier": [
+          //   string
+          // ],
+          // "alliance": string,
+          // "prohibitedCarrier": [
+          //   string
+          // ]
+        }
+      ],
+      // "maxPrice": string,
+      // "saleCountry": string,
+      // "ticketingCountry": string,
+      // "refundable": boolean,
+      // "solutions": integer
+    }
   }
-}
+
+  fetch('https://www.googleapis.com/qpxExpress/v1/trips/search', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: body
+  }).then(response => {
+    console.log(response.json());
+  }).catch(err => {console.log(err);});
+
 }
 
 function getAirportCodes(location) {
