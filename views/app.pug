@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    title
+  body
+    div#app
+      section#flights(v-if='section == 1')
+        div
+          | Chose flights
+        div(v-for='flight in flights')
+          div(style='display: inline-block;')
+            | {{ flight.date }}
+            | {{ flight.fromLoc }}
+            | {{ flight.toLoc }}
+            | {{ flight.airline }}
+            | {{ flight.timeDepart }}
+            | {{ flight.timeArrive }}
+            | {{ flight.airportFrom }}
+            | {{ flight.airportTo }}
+            | {{ flight.price }}
+          div(v-on:click="select('flight', flight)")
+            | Select
+      section#accommodation(v-if='section == 2')
+        div
+          | Chose accommodation
+        div(v-for='accommodation in accommodations')
+          div(style='display: inline-block;')
+            | {{ accomodation.price }}
+          div(v-on:click="select('accommodation', accommodation)")
+            | Select
+      section#thingstodo(v-if='section == 3')
+        div(v-for='todo in thingstodo')
+          div(style='display: inline-block;')
+            | {{ todo.name }}
+            | {{ todo.location }}
+          div(v-on:click="select('todo', todo)")
+            | Select
+      section#events(v-if='section == 4')
+        div
+          | Chose events
+        div(v-for='event in events')
+          div(style='display: inline-block;')
+            | {{ event.name }} :
+            | {{ event.startTime }}
+            | {{ event.endTime }}
+            | {{ event.location }}
+          div(v-on:click="select('todo', todo)")
+            | Select
+      section#votinglink(v-if='section == 5')
+        div(v-on:click="submit()")
+          | Submit
+        | {{ votingLink }}
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/vue')
+    script(src='js/app.js')

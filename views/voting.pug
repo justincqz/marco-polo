@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title
+  body#app
+    section#flights(v-if='section == 1')
+      div(v-for='flight in flights')
+        div(style='display: inline-block;')
+          | {{ flight.name }}
+        div
+          | Select
+    section#accommodation(v-if='section == 2')
+      div(v-for='accommodation in accommodations')
+        div(style='display: inline-block;')
+          | {{ accommodation.price }}
+        div
+          | Select
+    section#thingstodo(v-if='section == 3')
+      div(v-for='todo in thingstodo')
+        div(style='display: inline-block;')
+          | {{ todo.name }}
+        div
+          | Select
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js')
+    script(src='js/voting.js')
