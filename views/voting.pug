@@ -9,7 +9,7 @@ html
     span#id(style="display: none;")
       | #{id}
     div#app
-      section#flights(v-if='section == 1')
+      section#flights(v-show='section == 1')
         div.title
           | Vote for flights
         div(class='option' v-for='flight in flights')
@@ -29,7 +29,7 @@ html
               | {{ flight.votes }}
         div.btn.next(v-on:click="next")
           | Next
-      section#accommodation(v-if='section == 2')
+      section#accommodation(v-show='section == 2')
         div.title
           | Vote for accommodation
         div(class='option' v-for='accommodation in accommodations')
@@ -46,7 +46,7 @@ html
           | Previous
         div.btn.next(v-on:click="next")
           | Next
-      section#thingstodo(v-if='section == 3')
+      section#thingstodo(v-show='section == 3')
         div.title
           | Vote for things to see
         div(class='option' v-for='todo in thingstodo')
@@ -60,7 +60,7 @@ html
           | Previous
         div.btn.next(v-on:click="next")
           | Next
-      section#events(v-if='section == 4')
+      section#events(v-show='section == 4')
         div.title
           | Vote for events to attend
         div(class='option' v-for='event in events')

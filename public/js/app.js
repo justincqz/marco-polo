@@ -24,7 +24,13 @@ $(document).ready(function() {
         this.getEvents();
       },
       getFlights: function() {
-        $.get("/fakeflights", {}, function(data) {
+        params = {
+          origin: 
+          destLoc:
+          pax:
+          date: 
+        }
+        $.get("/flights", params, function(data) {
           console.log('flights', data);
           app.flights = data;
         });
@@ -91,6 +97,7 @@ $(document).ready(function() {
       next: function() {
         console.log("next");
         this.section += 1;
+        $('body').scrollTop(0);
       },
       prev: function() {
         this.section -= 1;

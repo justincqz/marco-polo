@@ -36,7 +36,18 @@ div#app .title {
 section#flights {
   margin: 25px;
 }
-
+section ul {
+  padding: 0;
+  margin: 0;
+}
+section ul li {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+}
+section#flights ul li img {
+  margin-left: 10px;
+}
 section#flights .option {
   padding: 25px;
   background: #fff;
@@ -51,7 +62,37 @@ section#flights .option.selected {
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
+section#flights .departure span, section#flights .arrival span {
+  display: block;
+  font-size: 12px;
+  color: rgb(80, 80, 80);
+  text-transform: uppercase;
+}
 
+section#accommodation .option {
+  padding: 0;
+}
+section#accommodation img {
+  object-fit: cover;
+  width:150px;
+  height: 150px;
+  margin-right: 10px;
+}
+section#accommodation ul li {
+  margin: 0;
+}
+section#accommodation ul li.des span {
+  display: block;
+}
+section#accommodation ul li.des .name {
+  font-weight: 600;
+}
+section#accommodation ul li.des .type {
+  font-weight: 600;
+  font-size: 11px;
+  color: rgb(140, 140, 140);
+  text-transform: uppercase;
+}
 
 .option {
   padding: 25px;
@@ -125,7 +166,19 @@ section#flights .option.selected {
   transform: translateY(-50%);
 }
 
-.link {
+input.link {
+  outline: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+  width: 180px;
+  margin: 0;
+  border: 0;
+  border-radius: 3px;
+  background-clip: padding-box;
+  padding: 15px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 700;
   position: absolute;
   top: 50%;
   left: 50%;
