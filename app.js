@@ -130,7 +130,8 @@ app.get('/accommodation', accommodationController.getAccommodation);
 app.get('/events', eventsController.getEvents);
 app.get('/fakeflights', flightController.getFlights);
 app.post('/addPoll', serializeJSONController.saveFile);
- app.get('/getPoll', serializeJSONController.loadFile);
+app.get('/getPoll', serializeJSONController.loadFile);
+app.get('/upvote', serializeJSONController.updateFile);
 
 /**
  * API examples routes.

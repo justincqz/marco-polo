@@ -6,17 +6,21 @@ $(document).ready(function() {
       flights: [],
       accommodations: [],
       thingstodo: [],
-      votingLink: ""
+      events: []
     },
     methods: {
       getData: function() {
         var id = $("#id").text();
-        console.log(id);
-        $.get("/getPoll"), {id: id}, function(data) {
-          console.log(data);
-        }
+        console.log('getting data for', id);
+        $.get("../getPoll", {id: id}, function(data) {
+          data = JSON.parse(data);
+          app.flights = data.flights;
+          app.accommodations = data.accommodations;
+          app.thingstodo = data.thingstodo;
+          app.events = data.events;
+        });
       },
-      upvote: function(id) {
+      upvote: function(itemType, item, event) {
         var params = {
           id: id,
           flights: [],
@@ -29,22 +33,23 @@ $(document).ready(function() {
           // TODO
         } else {
           elem.addClass('selected');
+          item.votes += 1;
           switch (itemType) {
             case 'flight':
-              params.flights.add(this.selectedFlights.indexOf(item));
+              params.flights.push(this.flights.indexOf(item));
               break;
             case 'accommodation':
-              params.accommodations.add(this.selectedAccommodations.indexOf(item));
+              params.accommodations.push(this.accommodations.indexOf(item));
               break;
             case 'todo':
-              params.todo.add(this.selectedTodos.indexOf(item));
+              params.todos.push(this.todos.indexOf(item));
               break;
             case 'event':
-              params.event.add(this.selectedEvents.indexOf(item));
+              params.events.push(this.events.indexOf(item));
               break;
           }
         }
-        $.post("/vote"), params, function(res) {
+        $.post("/upvote"), params, function(res) {
           console.log(res);
         }
       },

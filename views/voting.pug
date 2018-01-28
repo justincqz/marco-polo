@@ -6,6 +6,8 @@ html
     link(href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800", rel="stylesheet")
     link(href="/css/app.css", rel='stylesheet')
   body
+    span#id(style="display: none;")
+      | #{id}
     div#app
       section#flights(v-if='section == 1')
         div.title
@@ -22,7 +24,7 @@ html
             | {{ flight.airportFrom }}
             | {{ flight.airportTo }}
             | {{ flight.price }}
-            div.voting(style="display: inline-block;" @click="upvote('flight', flight)")
+            div.voting(style="display: inline-block;" @click="upvote('flight', flight, $event)")
               i.fa.fa-chevron-up(aria-hidden='true')
               | {{ flight.votes }}
         div.btn.next(v-on:click="next")
@@ -38,7 +40,7 @@ html
             //- img(src={{ accommodation.photo }})
             //- TODO SHOW ROOMS: iterate through .rooms
             div.voting(style="display: inline-block;")
-              i.fa.fa-chevron-up(aria-hidden='true' @click="upvote('accommodation', accommodation)")
+              i.fa.fa-chevron-up(aria-hidden='true' @click="upvote('accommodation', accommodation, $event)")
               | {{ accommodation.votes }}
         div.btn.prev(v-on:click="prev")
           | Previous
@@ -52,7 +54,7 @@ html
             | {{ todo.name }}
             | {{ todo.location }}
             div(style="display: inline-block;")
-              i.fa.fa-chevron-up(aria-hidden='true' @click="upvote('todo', todo)")
+              i.fa.fa-chevron-up(aria-hidden='true' @click="upvote('todo', todo, $event)")
               | {{ todo.votes }}
         div.btn.prev(v-on:click="prev")
           | Previous
@@ -67,7 +69,7 @@ html
             | {{ event.startTime }}
             | {{ event.endTime }}
             | {{ event.location }}
-            div(style="display: inline-block;" @click="upvote('event', event)")
+            div(style="display: inline-block;" @click="upvote('event', event, $event)")
               i.fa.fa-chevron-up(aria-hidden='true')
               | {{ event.votes }}
         div.btn.prev(v-on:click="prev")
@@ -79,4 +81,4 @@ html
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
     script(src='https://cdn.jsdelivr.net/npm/vue')
-    script(src='/js/app.js')
+    script(src='/js/voting.js')
