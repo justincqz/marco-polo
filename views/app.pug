@@ -3,23 +3,26 @@ html
   head
     title
     link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel='stylesheet')
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800", rel="stylesheet")
+    link(href="/css/app.css", rel='stylesheet')
   body
     div#app
-      nav#categories
-        ul
-          li
-            | Flights
-        ul
-          li
-            | Accommodation
-        ul
-          li
-            | Things to see
-        ul
-          li
-            | Events
+      //- nav#categories
+      //-   ul
+      //-     li
+      //-       i.fa.fa-plane(aria-hidden='true')
+      //-       | Flights
+      //-     li
+      //-       i.fa.fa-bed(aria-hidden='true')
+      //-       | Accommodation
+      //-     li
+      //-       i.fa.fa-university(aria-hidden='true')
+      //-       | Things to see
+      //-     li
+      //-       i.fa.fa-calendar-o(aria-hidden='true')
+      //-       | Events
       section#flights(v-if='section == 1')
-        div
+        div.title
           | Chose flights
         div(class='option' v-for='flight in flights' @click="select('flight', flight, $event)")
           div(style='display: inline-block;')
@@ -33,10 +36,10 @@ html
             | {{ flight.airportFrom }}
             | {{ flight.airportTo }}
             | {{ flight.price }}
-        div(v-on:click="next")
+        div.btn.next(v-on:click="next")
           | Next
       section#accommodation(v-if='section == 2')
-        div
+        div.title
           | Chose accommodation
         div(class='option' v-for='accommodation in accommodations' @click="select('accommodation', accommodation, $event)")
           div(style='display: inline-block;')
@@ -45,32 +48,40 @@ html
             | {{ accommodation.review_score_word }}
             //- img(src={{ accommodation.photo }})
             //- TODO SHOW ROOMS: iterate through .rooms
-        div(v-on:click="next")
+        div.btn.prev(v-on:click="prev")
+          | Previous
+        div.btn.next(v-on:click="next")
           | Next
       section#thingstodo(v-if='section == 3')
-        | Chose things to see
+        div.title
+          | Chose things to see
         div(class='option' v-for='todo in thingstodo' @click="select('todo', todo, $event)")
           div(style='display: inline-block;')
             | {{ todo.name }}
             | {{ todo.location }}
-        div(v-on:click="next")
+        div.btn.prev(v-on:click="prev")
+          | Previous
+        div.btn.next(v-on:click="next")
           | Next
       section#events(v-if='section == 4')
-        div
+        div.title
           | Chose events
-        div(v-for='event in events' @click="select('event', event, $event)")
+        div(class='option' v-for='event in events' @click="select('event', event, $event)")
           div(style='display: inline-block;')
             | {{ event.name }} :
             | {{ event.startTime }}
             | {{ event.endTime }}
             | {{ event.location }}
-        div(v-on:click="next()")
+        div.btn.prev(v-on:click="prev")
+          | Previous
+        div.btn.next(v-on:click="next()")
           | Next
       section#votinglink(v-if='section == 5')
-        div(v-on:click="submit")
+        div.btn.submit(v-on:click="submit")
           | Submit
-        | {{ votingLink }}
+        a.link(v-bind:href="votingLink")
+          | {{ votingLink }}
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
     script(src='https://cdn.jsdelivr.net/npm/vue')
-    script(src='js/app.js')
+    script(src='/js/app.js')

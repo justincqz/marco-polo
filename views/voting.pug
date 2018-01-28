@@ -2,29 +2,81 @@ doctype html
 html
   head
     title
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel='stylesheet')
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800", rel="stylesheet")
+    link(href="/css/app.css", rel='stylesheet')
   body
     div#app
-      span#id(style="display: none;")
-        | #{id}
       section#flights(v-if='section == 1')
-        div(v-for='flight in flights')
+        div.title
+          | Vote for flights
+        div(class='option' v-for='flight in flights')
           div(style='display: inline-block;')
-            | {{ flight.name }}
-          div
-            | Select
+            i.fa.fa-plane(aria-hidden='true')
+            | {{ flight.date }}
+            | {{ flight.fromLoc }}
+            | {{ flight.toLoc }}
+            | {{ flight.airline }}
+            | {{ flight.timeDepart }}
+            | {{ flight.timeArrive }}
+            | {{ flight.airportFrom }}
+            | {{ flight.airportTo }}
+            | {{ flight.price }}
+            div.voting(style="display: inline-block;")
+              i.fa.fa-chevron-up(aria-hidden='true')
+              | {{ flight.votes }}
+        div.btn.next(v-on:click="next")
+          | Next
       section#accommodation(v-if='section == 2')
-        div(v-for='accommodation in accommodations')
+        div.title
+          | Vote for accommodation
+        div(class='option' v-for='accommodation in accommodations' @click="select('accommodation', accommodation, $event)")
           div(style='display: inline-block;')
-            | {{ accommodation.price }}
-          div
-            | Select
+            | {{ accommodation.price }} {{ accommodation.hotel_currency_code}}
+            | {{ accommodation.hotel_name }}
+            | {{ accommodation.review_score_word }}
+            //- img(src={{ accommodation.photo }})
+            //- TODO SHOW ROOMS: iterate through .rooms
+            div.voting(style="display: inline-block;")
+              i.fa.fa-chevron-up(aria-hidden='true')
+              | {{ accommodation.votes }}
+        div.btn.prev(v-on:click="prev")
+          | Previous
+        div.btn.next(v-on:click="next")
+          | Next
       section#thingstodo(v-if='section == 3')
-        div(v-for='todo in thingstodo')
-          div(style='display: inline-block;')
+        div.title
+          | Vote for things to see
+        div(class='option' v-for='todo in thingstodo' @click="select('todo', todo, $event)")
+          div.voting(style='display: inline-block;')
             | {{ todo.name }}
-          div
-            | Select
+            | {{ todo.location }}
+            div(style="display: inline-block;")
+              i.fa.fa-chevron-up(aria-hidden='true')
+              | {{ todo.votes }}
+        div.btn.prev(v-on:click="prev")
+          | Previous
+        div.btn.next(v-on:click="next")
+          | Next
+      section#events(v-if='section == 4')
+        div.title
+          | Vote for events to attend
+        div(class='option' v-for='event in events' @click="select('event', event, $event)")
+          div.voting(style='display: inline-block;')
+            | {{ event.name }} :
+            | {{ event.startTime }}
+            | {{ event.endTime }}
+            | {{ event.location }}
+            div(style="display: inline-block;")
+              i.fa.fa-chevron-up(aria-hidden='true')
+              | {{ event.votes }}
+        div.btn.prev(v-on:click="prev")
+          | Previous
+        div.btn.next(v-on:click="next()")
+          | Next
+      section(v-if='section == 5')
+        | Thank you for voting!
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js')
-    script(src='js/voting.js')
+    script(src='https://cdn.jsdelivr.net/npm/vue')
+    script(src='/js/app.js')

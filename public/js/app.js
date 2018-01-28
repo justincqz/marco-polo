@@ -109,7 +109,8 @@ $(document).ready(function() {
         $.post("addPoll", params, function(res) {
           console.log(res);
         });
-        this.votingLink = "url/" + randId;
+        $('.btn.submit').hide();
+        this.votingLink = "http://localhost:8080/p/" + randId;
       }
     }
   });
