@@ -1,0 +1,69 @@
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title bfe Index Page
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/mystyles.css', rel='stylesheet')
+    link(href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet")
+  body
+    header.jumbotron.jumboheader.jumbotronback
+      .container.mainpage.transparent
+        .row
+          .col.offset-1.transparent
+            .col-md-4.mainform
+              .col.transparent
+                font(style='color:#87D37C', size='+5')
+                  b marco po.io
+                br
+                font(size='+2', style='color:#A2A2A2') Choose your own adventure...
+                .container(style='margin-top:30px')
+                  .row
+                    .col-xs-12
+                      form#reserveform(action='http://localhost:8080/flights', method='post')
+                        .form-group.row.inputPadding
+                          label.col-12(for='budget')
+                            font(size='-1')
+                              b ORIGIN
+                        .form-group.row.inputPadding
+                          .col-md-10.align-self-center
+                            input(type='text', name='origin', placeholder='Wherever')
+                        .form-group.row.inputPadding
+                          label.col-12(for='budget')
+                            font(size='-1')
+                              b DESTINATION
+                        .form-group.row.inputPadding
+                          .col-md-10.align-self-center.inputPadding
+                            input#destLoc(type='text', name='destLoc', placeholder='Wherever')
+                        .form-group.row.inputPadding
+                          label.col-12(for='numguests')
+                            font(size='-1')
+                              b NUMBER OF PEOPLE
+                        .form-group.row.inputPadding
+                          .col-md-10.align-self-center.dropdown
+                            select#pax(name='pax')
+                              option(value='1') 1
+                              option(value='2') 2
+                              option(value='3') 3
+                              option(value='4') 4
+                              option(value='5') 5
+                              option(value='6') 6
+                        .form-group.row.inputPadding
+                          label.col-2(for='dateandtime')
+                            b START
+                          label.col-2.offset-3(for='dateandtime')
+                            b END
+                        .form-group.row.inputPadding
+                          .col-12.col-md-5
+                            .input-group.inputPadding
+                              input(type='date', name='date', placeholder='Start', style='width:130px')
+                          .col-12.col-md-5.col-offset-md-4
+                            .input-group.inputPadding
+                              input.inputOutlines(type='date', placeholder='End', style='width:130px')
+                        .form-group.row
+                          .col-md-10
+                            button.btn.btn-main(type='submit', style='width:300px') Begin Your Adventure
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js')

@@ -1,0 +1,187 @@
+body {
+  background-color: rgb(245,245,245);
+  font-family: 'Montserrat', sans-serif;
+}
+
+div#app {
+  max-width: 1200px;
+}
+nav#categories {
+  width: 200px;
+}
+nav#categories ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-align: center;
+}
+
+nav#categories ul li {
+  background-color: white;
+  margin: 25px;
+}
+
+nav#categories ul li i {
+  display: block;
+}
+
+div#app .title {
+  font-size: 28px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
+
+section#flights {
+  margin: 25px;
+}
+section ul {
+  padding: 0;
+  margin: 0;
+}
+section ul li {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+}
+section#flights ul li img {
+  margin-left: 10px;
+}
+section#flights .option {
+  padding: 25px;
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+  width: 100%;
+}
+section#flights .option.selected {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+section#flights .departure span, section#flights .arrival span {
+  display: block;
+  font-size: 12px;
+  color: rgb(80, 80, 80);
+  text-transform: uppercase;
+}
+
+section#accommodation .option {
+  padding: 0;
+}
+section#accommodation img {
+  object-fit: cover;
+  width:150px;
+  height: 150px;
+  margin-right: 10px;
+}
+section#accommodation ul li {
+  margin: 0;
+}
+section#accommodation ul li.des span {
+  display: block;
+}
+section#accommodation ul li.des .name {
+  font-weight: 600;
+}
+section#accommodation ul li.des .type {
+  font-weight: 600;
+  font-size: 11px;
+  color: rgb(140, 140, 140);
+  text-transform: uppercase;
+}
+
+.option {
+  padding: 25px;
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+  width: 100%;
+}
+.option.selected {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.option .voting {
+  position: absolute;
+  right: 50px;
+  color: rgb(140, 140, 140);
+}
+.option .voting.selected {
+  color: black;
+}
+.btn {
+  color: white;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  border: none;
+  border-radius: 4px;
+  white-space: normal;
+  background-color: #1abc9c;
+  display: block;
+  width: 100px;
+  border-color: #357ebd;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+    -webkit-transition: border .25s linear,color .25s linear,background-color .25s linear;
+    transition: border .25s linear,color .25s linear,background-color .25s linear;
+    -webkit-font-smoothing: subpixel-antialiased
+}/*#A_4*/
+
+.btn a {  
+  padding: 10px 19px;
+  line-height: 1.471;
+  background: 0 0;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 17px;
+  font: normal 17px / 25.007px Helvetica, Arial, sans-serif;
+}
+
+.btn.next {
+  margin-top: 30px;
+  float: right;
+}
+.btn.prev {
+  margin-top: 30px;
+  float: left;
+}
+.btn.submit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+}
+
+input.link {
+  outline: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+  width: 180px;
+  margin: 0;
+  border: 0;
+  border-radius: 3px;
+  background-clip: padding-box;
+  padding: 15px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+}
