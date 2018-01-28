@@ -25,10 +25,10 @@ $(document).ready(function() {
       },
       getFlights: function() {
         params = {
-          origin: 
+          origin:
           destLoc:
           pax:
-          date: 
+          date:
         }
         $.get("/flights", params, function(data) {
           console.log('flights', data);
@@ -38,7 +38,7 @@ $(document).ready(function() {
       getAccomodation: function() {
         $.get("/accommodation", {}, function(data) {
           console.log('accommodations', data);
-          app.accommodations = data;
+          app.accommodations = data.splice(0,2);
         });
       },
       getThingsToDo: function() {

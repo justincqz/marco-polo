@@ -37,7 +37,7 @@ const homeController = require('./controllers/home');
 const thingstodoController = require('./controllers/thingstodo')
 const accommodationController = require('./controllers/accommodation')
 const eventsController = require('./controllers/events')
-const flightController = require('./controllers/fakeflights')
+const flightController = require('./controllers/tempflights')
 const serializeJSONController = require('./controllers/serialiseJSON')
 
 /**
@@ -124,11 +124,12 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  * Primary app routes.
  */
 app.get('/', homeController.homepage);
+app.get('/2', homeController.index);
 app.get('/p/:id', homeController.loadPoll);
 app.get('/thingstodo', thingstodoController.getThingsToDo);
 app.get('/accommodation', accommodationController.getAccommodation);
 app.get('/events', eventsController.getEvents);
-app.post('/flights', flightController.getFlights);
+app.get('/fakeFlights', flightController.getFlights);
 app.post('/addPoll', serializeJSONController.saveFile);
 app.get('/getPoll', serializeJSONController.loadFile);
 app.get('/upvote', serializeJSONController.updateFile);

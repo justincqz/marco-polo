@@ -20,16 +20,37 @@ function returnFlightData(res, fromLoc, toLoc, date, passengerCount) {
   getAirportCodes(fromLoc).then(function(fromAirportCodes) {
     getAirportCodes(toLoc).then(function(toAirportCodes) {
       var output;
-      console.log('python expedia.py '+fromAirportCodes[0]+' '+toAirportCodes[0]+' '+date+' '+passengerCount);
-      for (var i = 0; i < 2; i++){
-        child_process.exec('python expedia.py '+fromAirportCodes[i]+' '+toAirportCodes[i]+' '+date+' '+passengerCount,
-        function(err, stdout, stderr) {
-          console.log(stderr);
-          output += stdout;
-        });
+      var safe = false;
+      var promise = [];
+
+      for (var i = 0; i< fromAirportCodes.length; i++){
+        for (var j = 0; j < toAirportCodes.length; j++){
+          promise.push(new Promise(function(resolve, reject){child_process.exec('python expedia.py '+fromAirportCodes[i]+' '+toAirportCodes[j]+' '+date+' '+passengerCount,
+          function(err, stdout, stderr) {
+
+            if (stderr == ""){
+              console.log("Break?")
+                output = stdout;
+                resolve(output);
+            } else {
+              resolve("");
+            }
+          })}));
+        }
       }
-      console.log(JSON.parse(output));
-      res.send(JSON.parse(output));
+      Promise.all(promise).then(function(data) {
+        console.log("I resolved!");
+        var output;
+        var newArray = []
+        for (var i = 0; i < data.length; i++){
+          console.log(data[i]);
+          if (data[i] != ""){
+            output = JSON.parse(data[i]);
+            newArray.push(output['0']);
+            newArray.push(output['1']);
+          }
+        }
+        res.redirect('/2?'+newArray);});
     });
   });
 }
