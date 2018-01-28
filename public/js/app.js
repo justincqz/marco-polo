@@ -32,7 +32,7 @@ $(document).ready(function() {
         }
         $.get("/flights", params, function(data) {
           console.log('flights', data);
-          app.flights = data;
+          app.flights = data.slice(0, 10);
         });
       },
       getAccomodation: function() {
