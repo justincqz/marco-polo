@@ -4,21 +4,41 @@ exports.saveFile = (req, res) => {
   console.log(req.body);
   var uniqueId = req.body.id;
   var lFlights = req.body.data.flights
-  for (var i = 0; i < lFlights.length; i++){
-    lFlights[i].votes = 0;
+  if (!isEmptyObject(lFlights)){
+    for (var i = 0; i < lFlights.length; i++){
+      lFlights[i].votes = 0;
+    }
+  } else {
+    lFlights = [];
   }
+
   var lAccommodations = req.body.data.accommodations;
-  for (var i = 0; i < lAccommodations.length; i++){
-    lAccommodations[i].votes = 0;
+  if (!isEmptyObject(lAccommodations)){
+    for (var i = 0; i < lAccommodations.length; i++){
+      lAccommodations[i].votes = 0;
+    }
+  } else {
+    lAccommodations = [];
   }
+
   var lTodos = req.body.data.todos;
-  for (var i = 0; i < lTodos.length; i++){
-    lTodos[i].votes = 0;
+  if (!isEmptyObject(lTodos)){
+    for (var i = 0; i < lTodos.length; i++){
+      lTodos[i].votes = 0;
+    }
+  } else {
+    lTodos = [];
   }
+
   var lEvents = req.body.data.events;
-  for (var i = 0; i < lEvents.length; i++){
-    lEvents[i].votes = 0;
+  if (!isEmptyObject(lEvents)){
+    for (var i = 0; i < lEvents.length; i++){
+      lEvents[i].votes = 0;
+    }
+  } else {
+    lEvents = [];
   }
+
   var finalData = {
     flights : lFlights,
     accommodations : lAccommodations,
@@ -56,21 +76,33 @@ exports.updateFile = (req, res) => {
   }
     var updateData = JSON.parse(oldData);
     var newFlights = req.body.data.flights;
-    for (var i = 0; i < newFlights.length; i++){
-      updateData.flights[newFlights[i]].votes += 1;
+    if (!isEmptyObject(newFlights)){
+      for (var i = 0; i < newFlights.length; i++){
+        updateData.flights[newFlights[i]].votes += 1;
+      }
     }
+
     var newAccommodations = req.body.data.accommodations;
-    for (var i = 0; i < newAccommodations.length; i++){
-      updateData.accommodations[newAccommodations[i]].votes += 1;
+    if (!isEmptyObject(newAccommodations)){
+      for (var i = 0; i < newAccommodations.length; i++){
+        updateData.accommodations[newAccommodations[i]].votes += 1;
+      }
     }
+
     var newTodos = req.body.data.todos;
-    for (var i = 0; i < newTodos; i++){
-      updateData.todos[newTodos[i]].votes += 1;
+    if (!isEmptyObject(newTodos)){
+      for (var i = 0; i < newTodos; i++){
+        updateData.todos[newTodos[i]].votes += 1;
+      }
     }
+
     var newEvents = req.body.data.events;
-    for (var i = 0; i < newEvents; i++){
-      updateData.events[newEvents[i]].vote += 1;
+    if (!isEmptyObject(newEvents)){
+      for (var i = 0; i < newEvents; i++){
+        updateData.events[newEvents[i]].vote += 1;
+      }
     }
+
     console.log(updateData);
     res.send(updateData);
   });
@@ -82,24 +114,45 @@ exports.downvoteFile = (req, res) => {
   if (err) {
     res.send(err);
   }
-    var updateData = JSON.parse(oldData);
-    var newFlights = req.body.data.flights;
+  var updateData = JSON.parse(oldData);
+  var newFlights = req.body.data.flights;
+  if (!isEmptyObject(newFlights)){
     for (var i = 0; i < newFlights.length; i++){
       updateData.flights[newFlights[i]].votes -= 1;
     }
-    var newAccommodations = req.body.data.accommodations;
+  }
+
+  var newAccommodations = req.body.data.accommodations;
+  if (!isEmptyObject(newAccommodations)){
     for (var i = 0; i < newAccommodations.length; i++){
       updateData.accommodations[newAccommodations[i]].votes -= 1;
     }
-    var newTodos = req.body.data.todos;
+  }
+
+  var newTodos = req.body.data.todos;
+  if (!isEmptyObject(newTodos)){
     for (var i = 0; i < newTodos; i++){
       updateData.todos[newTodos[i]].votes -= 1;
     }
-    var newEvents = req.body.data.events;
+  }
+
+  var newEvents = req.body.data.events;
+  if (!isEmptyObject(newEvents)){
     for (var i = 0; i < newEvents; i++){
       updateData.events[newEvents[i]].vote -= 1;
     }
-    console.log(updateData);
-    res.send(updateData);
-  });
+  }
+
+  console.log(updateData);
+  res.send(updateData);
+});
+}
+
+function isEmptyObject(obj) {
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      return false;
+    }
+  }
+  return true;
 }
