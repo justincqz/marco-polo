@@ -30,7 +30,7 @@ dotenv.load({ path: '.env.example' });
 /**
  * Controllers (route handlers).
  */
-// const homeController = require('./controllers/home');
+const homeController = require('./controllers/home');
 // const userController = require('./controllers/user');
 // const apiController = require('./controllers/api');
 // const contactController = require('./controllers/contact');
@@ -118,17 +118,19 @@ app.use((req, res, next) => {
 //   }
 //   next();
 // });
-// app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 /**
  * Primary app routes.
  */
-
+app.get('/', homeController.index);
+app.get('/p/:id', homeController.loadPoll);
 app.get('/thingstodo', thingstodoController.getThingsToDo);
 app.get('/accommodation', accommodationController.getAccommodation);
 app.get('/events', eventsController.getEvents);
 app.get('/fakeflights', flightController.getFlights);
 app.post('/addPoll', serializeJSONController.saveFile);
+// app.get('/getPoll', serializeJSONController.readFile);
 
 /**
  * API examples routes.

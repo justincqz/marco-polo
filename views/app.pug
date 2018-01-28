@@ -2,13 +2,28 @@ doctype html
 html
   head
     title
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel='stylesheet')
   body
     div#app
+      nav#categories
+        ul
+          li
+            | Flights
+        ul
+          li
+            | Accommodation
+        ul
+          li
+            | Things to see
+        ul
+          li
+            | Events
       section#flights(v-if='section == 1')
         div
           | Chose flights
-        div(v-for='flight in flights')
+        div(class='option' v-for='flight in flights' @click="select('flight', flight, $event)")
           div(style='display: inline-block;')
+            i.fa.fa-plane(aria-hidden='true')
             | {{ flight.date }}
             | {{ flight.fromLoc }}
             | {{ flight.toLoc }}
@@ -18,36 +33,41 @@ html
             | {{ flight.airportFrom }}
             | {{ flight.airportTo }}
             | {{ flight.price }}
-          div(v-on:click="select('flight', flight)")
-            | Select
+        div(v-on:click="next")
+          | Next
       section#accommodation(v-if='section == 2')
         div
           | Chose accommodation
-        div(v-for='accommodation in accommodations')
+        div(class='option' v-for='accommodation in accommodations' @click="select('accommodation', accommodation, $event)")
           div(style='display: inline-block;')
-            | {{ accomodation.price }}
-          div(v-on:click="select('accommodation', accommodation)")
-            | Select
+            | {{ accommodation.price }} {{ accommodation.hotel_currency_code}}
+            | {{ accommodation.hotel_name }}
+            | {{ accommodation.review_score_word }}
+            //- img(src={{ accommodation.photo }})
+            //- TODO SHOW ROOMS: iterate through .rooms
+        div(v-on:click="next")
+          | Next
       section#thingstodo(v-if='section == 3')
-        div(v-for='todo in thingstodo')
+        | Chose things to see
+        div(class='option' v-for='todo in thingstodo' @click="select('todo', todo, $event)")
           div(style='display: inline-block;')
             | {{ todo.name }}
             | {{ todo.location }}
-          div(v-on:click="select('todo', todo)")
-            | Select
+        div(v-on:click="next")
+          | Next
       section#events(v-if='section == 4')
         div
           | Chose events
-        div(v-for='event in events')
+        div(v-for='event in events' @click="select('event', event, $event)")
           div(style='display: inline-block;')
             | {{ event.name }} :
             | {{ event.startTime }}
             | {{ event.endTime }}
             | {{ event.location }}
-          div(v-on:click="select('todo', todo)")
-            | Select
+        div(v-on:click="next()")
+          | Next
       section#votinglink(v-if='section == 5')
-        div(v-on:click="submit()")
+        div(v-on:click="submit")
           | Submit
         | {{ votingLink }}
 

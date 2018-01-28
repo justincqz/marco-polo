@@ -24,55 +24,86 @@ $(document).ready(function() {
         this.getEvents();
       },
       getFlights: function() {
-        $.get("/flights"), {}, function(data) {
-          app.flights = JSON.parse(data);
-          console.log('Flights', app.flights);
-        }
+        $.get("/fakeflights", {}, function(data) {
+          console.log('flights', data);
+          app.flights = data;
+        });
       },
       getAccomodation: function() {
         $.get("/accommodation", {}, function(data) {
-          app.accommodations = JSON.parse(data);
-          console.log('Flights', app.accommodations);
+          console.log('accommodations', data);
+          app.accommodations = data;
         });
       },
       getThingsToDo: function() {
         $.get("/thingstodo", {destCity: 'Rome'}, function(data) {
-          app.thingstodo = JSON.parse(data);
-          console.log('Flights', app.thingstodo);
+          console.log('thingstodo', data);
+          app.thingstodo = data;
         });
       },
       getEvents: function() {
-        $.get("/events", {}, function(data) {
-          app.events = JSON.parse(data);
-          console.log('Flights', app.events);
+        $.get("/events", {destCity: 'Rome', startDate: '20180428', endDate: '20180510'}, function(data) {
+          console.log('events', data);
+          app.events = data;
         });
       },
-      select: function(itemType, item) {
-        switch (itemType) {
-          case 'flight':
-            this.selectedFlights.push(item);
-            break;
-          case 'accommodation':
-            this.selectedAccommodations.push(item);
-            break;
-          case 'todo':
-            this.selectedTodos.push(item);
-            break;
-          case 'event':
-            this.selectedEvents.push(item);
-            break;
+      select: function(itemType, item, event) {
+        var elem = $(event.currentTarget);
+        if (elem.hasClass('selected')) {
+          var array;
+          switch (itemType) {
+            case 'flight':
+              array = this.selectedFlights;
+              break;
+            case 'accommodation':
+              array = this.selectedAccommodations;
+              break;
+            case 'todo':
+              array = this.selectedTodos;
+              break;
+            case 'event':
+              array = this.selectedEvents;
+              break;
+          }
+          var index = array.indexOf(item);
+          if (index > -1) {
+            array.splice(index, 1);
+          }
+          elem.removeClass('selected');
+        } else {
+          elem.addClass('selected');
+          switch (itemType) {
+            case 'flight':
+              this.selectedFlights.push(item);
+              break;
+            case 'accommodation':
+              this.selectedAccommodations.push(item);
+              break;
+            case 'todo':
+              this.selectedTodos.push(item);
+              break;
+            case 'event':
+              this.selectedEvents.push(item);
+              break;
+          }
         }
+      },
+      next: function() {
+        console.log("next");
         this.section += 1;
+      },
+      prev: function() {
+        this.section -= 1;
       },
       submit: function() {
         var randId = this.generateRandomId();
         params = {
           id: this.generateRandomId(),
           data: {
-            flights: selectedFlights,
-            accommodations: selectedAccommodations,
-            todos: selectedTodos,
-            events: selectedEvents
+            flights: this.selectedFlights,
+            accommodations: this.selectedAccommodations,
+            todos: this.selectedTodos,
+            events: this.selectedEvents
           }
         }
         $.post("addPoll", params, function(res) {
@@ -85,4 +116,9 @@ $(document).ready(function() {
 
   console.log("running");
   app.getChoices();
+
+  $('.option').on('click', function() {
+    console.log("clicked");
+    $(this).addClass("selected");
+  });
 });

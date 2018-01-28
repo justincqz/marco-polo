@@ -3,7 +3,7 @@ exports.getAccommodation = (req, res) => {
   getCityId("london").then(function(cityId) {
     console.log("City id", cityId);
     getHotels(-1, -1, cityId).then(function(data) {
-      res.json(data);
+      res.json(data.result);
     });
   });
 };
