@@ -11,13 +11,13 @@ exports.getEvents = (req, res) => {
               + '&location=' + currentCity + '&date=' + startDate + endDate
               + '&page_size=20';
 
-  console.log(queryString);
+  //console.log(queryString);
   client.get(queryString, '', function (data, response) {
     var events = data.search.events.event;
-    console.log(events);
+    //console.log(events);
 
     var r = [];
-    console.log(events.length);
+    //console.log(events.length);
     for (var i = 0; i < events.length; i++){
       r.push({
         name: events[i].title,
@@ -26,7 +26,7 @@ exports.getEvents = (req, res) => {
         location: events[i].venue_name,
       })
     }
-    console.log(data.search.total_items);
+    //console.log(data.search.total_items);
     res.json(r);
   });
 

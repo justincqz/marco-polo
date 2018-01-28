@@ -19,7 +19,7 @@ exports.getThingsToDo = (req, res) => {
   var currentCity = req.body.destCity;
   rest.getJSON(createRequest(currentCity), function(statusCode, result) {
       // I could work with the result html/json here.  I could also just return it
-      console.log("onResult: (" + statusCode + ")" + JSON.stringify(result));
+      //console.log("onResult: (" + statusCode + ")" + JSON.stringify(result));
       res.statusCode = statusCode;
       res.send(result);
   });
@@ -29,13 +29,13 @@ exports.getThingsToDo = (req, res) => {
 //get Json function
 getJSON = function(options, onResult)
 {
-    console.log("rest::getJSON");
+    //console.log("rest::getJSON");
 
     var port = options.port == 443 ? https : http;
     var req = port.request(options, function(res)
     {
         var output = '';
-        console.log(options.host + ':' + res.statusCode);
+        c//onsole.log(options.host + ':' + res.statusCode);
         res.setEncoding('utf8');
 
         res.on('data', function (chunk) {
