@@ -38,6 +38,7 @@ const thingstodoController = require('./controllers/thingstodo')
 const accommodationController = require('./controllers/accommodation')
 const eventsController = require('./controllers/events')
 const flightController = require('./controllers/fakeflights')
+const serializeJSONController = require('./controllers/serialiseJSON')
 
 /**
  * API keys and Passport configuration.
@@ -127,6 +128,7 @@ app.get('/thingstodo', thingstodoController.getThingsToDo);
 app.get('/accommodation', accommodationController.getAccommodation);
 app.get('/events', eventsController.getEvents);
 app.get('/fakeflights', flightController.getFlights);
+app.post('/addPoll', serializeJSONController.saveFile);
 
 /**
  * API examples routes.

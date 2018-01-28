@@ -20,7 +20,7 @@ function getHotels(checkinDate, checkoutDate, cityId) {
     var args = {
       checkin: '2018-04-27',
       checkout: '2018-04-28',
-      city_ids: -1565670,
+      city_ids: cityId,
       room1: 'A,A',
       extras: 'room_details,hotel_details'
     };
