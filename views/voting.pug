@@ -22,7 +22,7 @@ html
             | {{ flight.airportFrom }}
             | {{ flight.airportTo }}
             | {{ flight.price }}
-            div.voting(style="display: inline-block;")
+            div.voting(style="display: inline-block;" @click="upvote('flight', flight)")
               i.fa.fa-chevron-up(aria-hidden='true')
               | {{ flight.votes }}
         div.btn.next(v-on:click="next")
@@ -30,7 +30,7 @@ html
       section#accommodation(v-if='section == 2')
         div.title
           | Vote for accommodation
-        div(class='option' v-for='accommodation in accommodations' @click="select('accommodation', accommodation, $event)")
+        div(class='option' v-for='accommodation in accommodations')
           div(style='display: inline-block;')
             | {{ accommodation.price }} {{ accommodation.hotel_currency_code}}
             | {{ accommodation.hotel_name }}
@@ -38,7 +38,7 @@ html
             //- img(src={{ accommodation.photo }})
             //- TODO SHOW ROOMS: iterate through .rooms
             div.voting(style="display: inline-block;")
-              i.fa.fa-chevron-up(aria-hidden='true')
+              i.fa.fa-chevron-up(aria-hidden='true' @click="upvote('accommodation', accommodation)")
               | {{ accommodation.votes }}
         div.btn.prev(v-on:click="prev")
           | Previous
@@ -47,12 +47,12 @@ html
       section#thingstodo(v-if='section == 3')
         div.title
           | Vote for things to see
-        div(class='option' v-for='todo in thingstodo' @click="select('todo', todo, $event)")
+        div(class='option' v-for='todo in thingstodo')
           div.voting(style='display: inline-block;')
             | {{ todo.name }}
             | {{ todo.location }}
             div(style="display: inline-block;")
-              i.fa.fa-chevron-up(aria-hidden='true')
+              i.fa.fa-chevron-up(aria-hidden='true' @click="upvote('todo', todo)")
               | {{ todo.votes }}
         div.btn.prev(v-on:click="prev")
           | Previous
@@ -61,13 +61,13 @@ html
       section#events(v-if='section == 4')
         div.title
           | Vote for events to attend
-        div(class='option' v-for='event in events' @click="select('event', event, $event)")
+        div(class='option' v-for='event in events')
           div.voting(style='display: inline-block;')
             | {{ event.name }} :
             | {{ event.startTime }}
             | {{ event.endTime }}
             | {{ event.location }}
-            div(style="display: inline-block;")
+            div(style="display: inline-block;" @click="upvote('event', event)")
               i.fa.fa-chevron-up(aria-hidden='true')
               | {{ event.votes }}
         div.btn.prev(v-on:click="prev")

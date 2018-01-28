@@ -70,6 +70,10 @@ section#flights .option.selected {
 .option .voting {
   position: absolute;
   right: 50px;
+  color: rgb(140, 140, 140);
+}
+.option .voting.selected {
+  color: black;
 }
 .btn {
   color: white;
