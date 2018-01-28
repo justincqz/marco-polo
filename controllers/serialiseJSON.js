@@ -69,42 +69,38 @@ exports.loadFile = (req, res) => {
 }
 
 exports.updateFile = (req, res) => {
-  var uniqueId = req.body.id;
+  var uniqueId = req.query.id;
   fs.readFile("./db/"+uniqueId, 'utf-8', (err, oldData) => {
   if (err) {
     res.send(err);
   }
-    var updateData = JSON.parse(oldData);
-    var newFlights = req.body.data.flights;
-    if (!isEmptyObject(newFlights)){
-      for (var i = 0; i < newFlights.length; i++){
-        updateData.flights[newFlights[i]].votes += 1;
-      }
-    }
+  var updateData = JSON.parse(oldData);
 
-    var newAccommodations = req.body.data.accommodations;
-    if (!isEmptyObject(newAccommodations)){
-      for (var i = 0; i < newAccommodations.length; i++){
-        updateData.accommodations[newAccommodations[i]].votes += 1;
-      }
+  var parsedData = JSON.parse(req.query.data);
+  for (var i = 0; i < parsedData.flights.length; i++){
+    updateData.flights[parsedData.flights[i]].votes += 1 ;
+  }
+  if (!isEmptyObject(parsedData.accommodations)){
+    for (var i = 0; i < parsedData.accommodations.length; i++){
+      updateData.accommodations[parsedData.accommodations[i]].votes += 1;
     }
-
-    var newTodos = req.body.data.todos;
-    if (!isEmptyObject(newTodos)){
-      for (var i = 0; i < newTodos; i++){
-        updateData.todos[newTodos[i]].votes += 1;
-      }
+  }
+  if (!isEmptyObject(parsedData.todos)){
+    for (var i = 0; i < parsedData.todos.length; i++){
+      updateData.todos[parsedData.todos[i]].votes += 1;
     }
-
-    var newEvents = req.body.data.events;
-    if (!isEmptyObject(newEvents)){
-      for (var i = 0; i < newEvents; i++){
-        updateData.events[newEvents[i]].vote += 1;
-      }
+  }
+  if (!isEmptyObject(parsedData.events)){
+    for (var i = 0; i < parsedData.events.length; i++){
+      updateData.events[parsedData.events[i]].vote += 1;
     }
-
-    console.log(updateData);
-    res.send(updateData);
+  }
+    fs.writeFile("./db/" + uniqueId, JSON.stringify(updateData), function(err) {
+        if(err) {
+            res.send(err);
+        }
+        res.send("Saved");
+    });
   });
 }
 
