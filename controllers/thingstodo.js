@@ -1,6 +1,6 @@
 const Client = require('node-rest-client').Client;
 const client = new Client();
-const GOOGLE_API_KEY = 'AIzaSyDx7O2y6ts1OPlnl9aux7lAAEoLAHAanY4';
+const GOOGLE_API_KEY = 'AIzaSyDs0duyuracL1XtzvqKpMHmEp-3pzy8vIM';
 
 exports.getThingsToDo = (req, res) => {
   var currentCity = req.query.destCity;
