@@ -1,24 +1,15 @@
+var child_process = require('child_process');
+
 exports.getFlights = (req, res) => {
+  var dest = req.query.destLoc;
+  var origin = req.query.origin;
+  var pax = req.query.pax;
+  var date = req.query.date;
   var r = [];
-  r.push({fromLoc: 'Lyon',
-toLoc : 'London',
-airline : 'BAW',
-date : '20180129',
-timeDepart : '1300',
-timeArrive : '1700',
-airportFrom : 'LYS',
-airportTo : 'LGW',
-price : '300'});
-r.push({
-  fromLoc : 'Kuala Lumpur',
-toLoc : 'New York',
-airline : 'MAH',
-date : '20180203',
-timeDepart : '0700',
-timeArrive : '1600',
-airportFrom : 'KUL',
-airportTo : 'NYR',
-price : '1800'
-});
-res.send(r);
+  console.log('python expedia.py '+dest+' '+origin+' '+date+' '+pax);
+  child_process.exec('python expedia.py '+dest+' '+origin+' '+date+' '+pax,
+  function(err, stdout, stderr) {
+    console.log(stderr);
+    res.send(stdout);
+  });
 }

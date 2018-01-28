@@ -128,7 +128,7 @@ app.get('/p/:id', homeController.loadPoll);
 app.get('/thingstodo', thingstodoController.getThingsToDo);
 app.get('/accommodation', accommodationController.getAccommodation);
 app.get('/events', eventsController.getEvents);
-app.get('/fakeflights', flightController.getFlights);
+app.get('/flights', flightController.getFlights);
 app.post('/addPoll', serializeJSONController.saveFile);
 app.get('/getPoll', serializeJSONController.loadFile);
 app.get('/upvote', serializeJSONController.updateFile);
